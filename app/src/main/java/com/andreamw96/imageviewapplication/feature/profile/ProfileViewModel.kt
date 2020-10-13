@@ -1,4 +1,4 @@
-package com.andreamw96.imageviewapplication.feature.main
+package com.andreamw96.imageviewapplication.feature.profile
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class MainViewModel(
+class ProfileViewModel(
     application: Application,
     useCases: UseCases
 ) : MyViewModel(application, useCases) {

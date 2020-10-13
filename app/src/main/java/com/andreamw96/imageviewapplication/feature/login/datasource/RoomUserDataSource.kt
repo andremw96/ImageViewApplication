@@ -2,10 +2,10 @@ package com.andreamw96.imageviewapplication.feature.login.datasource
 
 import com.andreamw96.data.login.LoginUserSource
 import com.andreamw96.domain.User
-import com.andreamw96.imageviewapplication.room.AppDatabase
-import com.andreamw96.imageviewapplication.room.user.UserEntity
+import com.andreamw96.imageviewapplication.datasource.room.AppDatabase
+import com.andreamw96.imageviewapplication.datasource.room.user.UserEntity
 
-class RoomDataSource(private val appDatabase: AppDatabase?) : LoginUserSource {
+class RoomUserDataSource(private val appDatabase: AppDatabase?) : LoginUserSource {
 
     private val userDao = appDatabase?.userDao()
 

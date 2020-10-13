@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.andreamw96.imageviewapplication.R
 import com.andreamw96.imageviewapplication.di.MyViewModelFactory
 import com.andreamw96.imageviewapplication.feature.main.MainActivity
@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginViewModel = ViewModelProviders.of(this, MyViewModelFactory)
+        loginViewModel = ViewModelProvider(this, MyViewModelFactory)
             .get(LoginViewModel::class.java)
 
         loginViewModel.getUserLogin()

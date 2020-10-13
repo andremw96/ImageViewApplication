@@ -1,6 +1,9 @@
-package com.andreamw96.imageviewapplication.room.user
+package com.andreamw96.imageviewapplication.datasource.room.user
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 
 @Dao
 interface UserDao {

@@ -1,11 +1,11 @@
-package com.andreamw96.imageviewapplication.room
+package com.andreamw96.imageviewapplication.datasource.room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.andreamw96.imageviewapplication.room.user.UserDao
-import com.andreamw96.imageviewapplication.room.user.UserEntity
+import com.andreamw96.imageviewapplication.datasource.room.user.UserDao
+import com.andreamw96.imageviewapplication.datasource.room.user.UserEntity
 
 @Database(
     entities = [

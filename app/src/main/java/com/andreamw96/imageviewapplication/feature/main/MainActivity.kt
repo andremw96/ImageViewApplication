@@ -1,37 +1,44 @@
 package com.andreamw96.imageviewapplication.feature.main
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.Fragment
 import com.andreamw96.imageviewapplication.R
-import com.andreamw96.imageviewapplication.di.MyViewModelFactory
-import com.andreamw96.imageviewapplication.feature.login.LoginActivity
+import com.andreamw96.imageviewapplication.feature.dotahero.ListDotaHeroFragment
+import com.andreamw96.imageviewapplication.feature.profile.ProfileFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mainViewModel: MainViewModel
-
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.home_menu -> {
+                loadFragment(ListDotaHeroFragment())
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.profile_menu -> {
+                loadFragment(ProfileFragment())
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mainViewModel = ViewModelProviders.of(this, MyViewModelFactory)
-            .get(MainViewModel::class.java)
+        btm_nav_view_main.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        mainViewModel.userLogin.observe(this, Observer {
-                if (it == null) {
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    finish()
-                }
-            }
-        )
-
-        logout.setOnClickListener {
-            mainViewModel.deleteUserLogin()
+        if (savedInstanceState == null) {
+            btm_nav_view_main.selectedItemId = R.id.home_menu
         }
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fl_container, fragment, fragment.javaClass.simpleName)
+            .commit()
     }
 }
