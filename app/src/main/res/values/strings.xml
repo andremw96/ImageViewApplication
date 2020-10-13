@@ -6,7 +6,7 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="email_must_be_filled">Email Must be filled</string>
+    <string name="pwd_must_be_filled">Password Must be filled</string>
     <string name="login_failed">"Login failed"</string>
 </resources>

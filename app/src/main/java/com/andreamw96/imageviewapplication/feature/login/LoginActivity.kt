@@ -2,6 +2,7 @@ package com.andreamw96.imageviewapplication.feature.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -30,9 +31,30 @@ class LoginActivity : AppCompatActivity() {
             }
         )
 
-        login.setOnClickListener {
-            loginViewModel.saveUserLogin(username.text.toString())
+        btn_login.setOnClickListener {
+            if (isLoginFieldFilled()) {
+                loginViewModel.saveUserLogin(edt_email.text.toString())
+            } else {
+                Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
+            }
         }
+    }
+
+    private fun isLoginFieldFilled() : Boolean {
+        edt_email.error = null
+        edt_password.error = null
+
+        if(edt_email.text.isNullOrEmpty()) {
+            edt_email.error = getString(R.string.email_must_be_filled)
+            return false
+        }
+
+        if(edt_password.text.isNullOrEmpty()) {
+            edt_password.error = getString(R.string.pwd_must_be_filled)
+            return false
+        }
+
+        return true
     }
 
 }
