@@ -8,7 +8,3 @@ data class DotaHero(
     val listSkillHero: List<SkillHero>
 )
 
-data class SkillHero(
-    val skill: String,
-    val skill_photo_url: String
-)

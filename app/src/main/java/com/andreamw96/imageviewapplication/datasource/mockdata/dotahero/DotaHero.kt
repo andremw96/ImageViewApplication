@@ -13,12 +13,6 @@ data class DotaHero(
     val listSkillHero: List<SkillHero>
 ) : Parcelable
 
-@Parcelize
-data class SkillHero(
-    val skill: String,
-    val skill_photo_url: String
-): Parcelable
-
 fun DotaHeroDomain.toPresentationModel(): DotaHero {
     return DotaHero(
         this.name,
