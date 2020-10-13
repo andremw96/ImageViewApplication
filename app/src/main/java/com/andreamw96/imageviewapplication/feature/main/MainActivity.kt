@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.andreamw96.imageviewapplication.R
-import com.andreamw96.imageviewapplication.feature.dotahero.ListDotaHeroFragment
+import com.andreamw96.imageviewapplication.feature.dotahero.list.ListDotaHeroFragment
 import com.andreamw96.imageviewapplication.feature.profile.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*

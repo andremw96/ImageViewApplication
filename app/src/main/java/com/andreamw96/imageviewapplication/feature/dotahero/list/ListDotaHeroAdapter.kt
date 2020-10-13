@@ -1,4 +1,4 @@
-package com.andreamw96.imageviewapplication.feature.dotahero
+package com.andreamw96.imageviewapplication.feature.dotahero.list
 
 import android.content.Context
 import android.content.Intent
@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.andreamw96.imageviewapplication.R
 import com.andreamw96.imageviewapplication.datasource.mockdata.dotahero.DotaHero
+import com.andreamw96.imageviewapplication.feature.dotahero.detail.DetailHeroDotaActivity
 import com.andreamw96.imageviewapplication.utils.RvItemClickHelper
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -37,8 +38,9 @@ class ListDotaHeroAdapter(private val ctx: Context) : RecyclerView.Adapter<ListD
         val dataHero = listDotaHero[position]
 
         holder.apply {
-            Glide.with(ctx)
+            Glide.with(holder.itemView)
                 .load(dataHero.photo)
+                .placeholder(R.drawable.ic_profile)
                 .apply(RequestOptions().override(350, 550))
                 .into(imgPhoto)
 

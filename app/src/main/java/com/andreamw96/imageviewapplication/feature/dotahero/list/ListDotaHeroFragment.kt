@@ -1,4 +1,4 @@
-package com.andreamw96.imageviewapplication.feature.dotahero
+package com.andreamw96.imageviewapplication.feature.dotahero.list
 
 import android.os.Bundle
 import android.view.LayoutInflater

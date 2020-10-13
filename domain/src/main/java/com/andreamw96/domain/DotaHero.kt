@@ -5,8 +5,10 @@ data class DotaHero(
     val detail: String,
     val photo: String,
     val description: String,
-    val skill_1: String,
-    val skill_2: String,
-    val skill_3: String,
-    val skill_4: String
+    val listSkillHero: List<SkillHero>
+)
+
+data class SkillHero(
+    val skill: String,
+    val skill_photo_url: String
 )

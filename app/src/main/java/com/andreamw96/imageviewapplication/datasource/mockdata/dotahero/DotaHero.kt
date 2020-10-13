@@ -10,11 +10,14 @@ data class DotaHero(
     val detail: String,
     val photo: String,
     val description: String,
-    val skill_1: String,
-    val skill_2: String,
-    val skill_3: String,
-    val skill_4: String
+    val listSkillHero: List<SkillHero>
 ) : Parcelable
+
+@Parcelize
+data class SkillHero(
+    val skill: String,
+    val skill_photo_url: String
+): Parcelable
 
 fun DotaHeroDomain.toPresentationModel(): DotaHero {
     return DotaHero(
@@ -22,9 +25,8 @@ fun DotaHeroDomain.toPresentationModel(): DotaHero {
         this.detail,
         this.photo,
         this.description,
-        this.skill_1,
-        this.skill_2,
-        this.skill_3,
-        this.skill_4
+        this.listSkillHero.map {
+            SkillHero(it.skill, it.skill_photo_url)
+        }
     )
 }
