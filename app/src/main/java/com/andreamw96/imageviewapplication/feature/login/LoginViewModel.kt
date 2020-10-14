@@ -2,6 +2,7 @@ package com.andreamw96.imageviewapplication.feature.login
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import com.andreamw96.imageviewapplication.R
 import com.andreamw96.imageviewapplication.di.MyViewModel
 import com.andreamw96.imageviewapplication.di.UseCases
 import com.andreamw96.imageviewapplication.feature.login.datasource.User
@@ -17,7 +18,22 @@ class LoginViewModel(
     useCases: UseCases
 ) : MyViewModel(application, useCases) {
 
+    var loginState = MutableLiveData<LoginFormState>()
     val userLogin = MutableLiveData<User>()
+
+    fun login(email: String?, password: String?) {
+        when {
+            email.isNullOrEmpty() -> {
+                loginState.postValue(LoginFormState(application.getString(R.string.email_must_be_filled)))
+            }
+            password.isNullOrEmpty() -> {
+                loginState.postValue(LoginFormState(passwordState = application.getString(R.string.pwd_must_be_filled)))
+            }
+            else -> {
+                loginState.postValue(LoginFormState(validated = true))
+            }
+        }
+    }
 
     fun getUserLogin() {
         GlobalScope.launch(Dispatchers.Main) {
@@ -29,11 +45,13 @@ class LoginViewModel(
     }
 
     fun saveUserLogin(email: String) {
-        GlobalScope.launch(Dispatchers.IO) {
-            useCases.saveUserLoginUseCase(DomainUser(email))
+        if (loginState.value?.validated == true) {
+            GlobalScope.launch(Dispatchers.IO) {
+                useCases.saveUserLoginUseCase(DomainUser(email))
 
-            val getUser = useCases.getUserLoginUseCase()
-            userLogin.postValue(getUser?.toPresentationModel())
+                val getUser = useCases.getUserLoginUseCase()
+                userLogin.postValue(getUser?.toPresentationModel())
+            }
         }
     }
 }
